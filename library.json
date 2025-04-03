@@ -2,7 +2,7 @@
     "version": "1.0.0",
     "name": "tiny-AES-c",
     "keywords": "cryptography, aes",
-    "description": "Small portable AES128/192/256 in C",
+    "description": "Small portable TINYAES_ENABLE_AES128/192/256 in C",
     "repository":
     {
         "type": "git",

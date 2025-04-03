@@ -3,7 +3,7 @@
 
 This is a small and portable implementation of the AES [ECB](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Electronic_Codebook_.28ECB.29), [CTR](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Counter_.28CTR.29) and [CBC](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Cipher_Block_Chaining_.28CBC.29) encryption algorithms written in C.
 
-You can override the default key-size of 128 bit with 192 or 256 bit by defining the symbols AES192 or AES256 in [`aes.h`](https://github.com/kokke/tiny-AES-c/blob/master/aes.h).
+You can override the default key-size of 128 bit with 192 or 256 bit by defining the symbols TINYAES_ENABLE_AES192 or TINYAES_ENABLE_AES256 in [`aes.h`](https://github.com/kokke/tiny-AES-c/blob/master/aes.h).
 
 The API is very simple and looks like this (I am using C99 `<stdint.h>`-style annotated types):
 
@@ -46,14 +46,14 @@ I've successfully used the code on 64bit x86, 32bit ARM and 8 bit AVR platforms.
 
 GCC size output when only CTR mode is compiled for ARM:
 
-    $ arm-none-eabi-gcc -Os -DCBC=0 -DECB=0 -DCTR=1 -c aes.c
+    $ arm-none-eabi-gcc -Os -DTINYAES_ENABLE_CBC=0 -DTINYAES_ENABLE_ECB=0 -DTINYAES_ENABLE_CTR=1 -c aes.c
     $ size aes.o
        text    data     bss     dec     hex filename
        1171       0       0    1171     493 aes.o
 
 .. and when compiling for the THUMB instruction set, we end up well below 1K in code size.
 
-    $ arm-none-eabi-gcc -Os -mthumb -DCBC=0 -DECB=0 -DCTR=1 -c aes.c
+    $ arm-none-eabi-gcc -Os -mthumb -DTINYAES_ENABLE_CBC=0 -DTINYAES_ENABLE_ECB=0 -DTINYAES_ENABLE_CTR=1 -c aes.c
     $ size aes.o
        text    data     bss     dec     hex filename
         903       0       0     903     387 aes.o

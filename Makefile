@@ -7,11 +7,11 @@ AR           = ar
 ARFLAGS      = rcs
 CFLAGS       = -Wall -Os -c
 LDFLAGS      = -Wall -Os -Wl,-Map,test.map
-ifdef AES192
-CFLAGS += -DAES192=1
+ifdef TINYAES_ENABLE_AES192
+CFLAGS += -DTINYAES_ENABLE_AES192=1
 endif
-ifdef AES256
-CFLAGS += -DAES256=1
+ifdef TINYAES_ENABLE_AES256
+CFLAGS += -DTINYAES_ENABLE_AES256=1
 endif
 
 OBJCOPYFLAGS = -j .text -O ihex
@@ -54,8 +54,8 @@ clean:
 
 test:
 	make clean && make && ./test.elf
-	make clean && make AES192=1 && ./test.elf
-	make clean && make AES256=1 && ./test.elf
+	make clean && make TINYAES_ENABLE_AES192=1 && ./test.elf
+	make clean && make TINYAES_ENABLE_AES256=1 && ./test.elf
 
 lint:
 	$(call SPLINT)

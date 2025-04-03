@@ -17,30 +17,30 @@ class TinyAesCConan(ConanFile):
 
     _options_dict = {
         # enable AES128
-        "AES128": [True, False],
+        "TINYAES_ENABLE_AES128": [True, False],
 
         # enable AES192
-        "AES192": [True, False],
+        "TINYAES_ENABLE_AES192": [True, False],
 
         # enable AES256
-        "AES256": [True, False],
+        "TINYAES_ENABLE_AES256": [True, False],
 
         # enable AES encryption in CBC-mode of operation
-        "CBC": [True, False],
+        "TINYAES_ENABLE_CBC": [True, False],
 
         # enable the basic ECB 16-byte block algorithm
-        "ECB": [True, False],
+        "TINYAES_ENABLE_ECB": [True, False],
 
         # enable encryption in counter-mode
-        "CTR": [True, False],
+        "TINYAES_ENABLE_CTR": [True, False],
     }
 
     options = _options_dict
 
     default_options = {
-        "AES128": True,
-        "AES192": False,
-        "AES256": False,
+        "TINYAES_ENABLE_AES128": True,
+        "TINYAES_ENABLE_AES192": False,
+        "TINYAES_ENABLE_AES256": False,
         "CBC": True,
         "ECB": True,
         "CTR": True
@@ -50,7 +50,7 @@ class TinyAesCConan(ConanFile):
         if not self.options.CBC and not self.options.ECB and not self.options.CTR:
             raise ConanException("Need to at least specify one of CBC, ECB or CTR modes")
 
-        if not self.options.AES128 and not self.options.AES192 and not self.options.AES256:
+        if not self.options.TINYAES_ENABLE_AES128 and not self.options.TINYAES_ENABLE_AES192 and not self.options.TINYAES_ENABLE_AES256:
             raise ConanException("Need to at least specify one of AES{128, 192, 256} modes")
 
     def build(self):
